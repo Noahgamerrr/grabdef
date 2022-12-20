@@ -1,22 +1,23 @@
-import XMLHttpRequest from 'xhr2';
+const pup = require("puppeteer");
 
-function getDef() {
-    const Http = new XMLHttpRequest();
-    const regex = /<meta\sname="description".*>/g;
-    const url='https://www.dictionary.com/browse/corrugated-iron';
-    Http.open("GET", url);
+(async() => {
+    const browser = await pup.launch();
+    const page = await browser.newPage();
+
+    await page.goto("https://www.dictionary.com/browse/permit");
+
+    const allResultsSelector = '.css-10n3ydx';
+    await page.waitForSelector(allResultsSelector);
+
+    const def = await page.evaluate(allResultsSelector => {
+        return [...document.querySelectorAll(allResultsSelector)].map(anchor => {
+          const title = anchor.textContent.split('|')[0].trim();
+          return `${title} - ${anchor.href}`;
+        });
+      }, allResultsSelector);
+
+    console.log(def.join('\n'));
     
-    Http.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            printDef(Http.responseText.match(regex));
-        }
-    }
 
-    Http.send();
-}
-
-getDef();
-
-function printDef(def) {
-    console.log(def);
-}
+    await browser.close();
+})();
