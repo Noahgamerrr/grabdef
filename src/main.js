@@ -16,6 +16,18 @@ const init = async() => {
   }
 }
 
+const grabContent = async(page, selectorStr) => {
+  await page.waitForSelector(selectorStr);
+
+  const res = await page.evaluate(allResultsSelector => {
+      return [...document.querySelectorAll(allResultsSelector)].map(anchor => {
+        const title = anchor.textContent.trim();
+        return `${title}`;
+      });
+    }, selectorStr);
+  return res;
+}
+
 let defgrabber = async(vocab, nounType) => {
     const browser = await pup.launch();
     const page = await browser.newPage();
@@ -24,25 +36,10 @@ let defgrabber = async(vocab, nounType) => {
 
     await page.goto(`https://www.dictionary.com/browse/${vocab}`);
 
-    const typeSelector = '.css-69s207';
-    await page.waitForSelector(typeSelector);
 
-    const type = await page.evaluate(allResultsSelector => {
-        return [...document.querySelectorAll(allResultsSelector)].map(anchor => {
-          const title = anchor.textContent.split(' ')[0].trim();
-          return `${title} - ${anchor.href}`;
-        });
-      }, typeSelector);
-
-    const defSelector = '.css-10n3ydx';
-    await page.waitForSelector(defSelector);
-
-    const def = await page.evaluate(allResultsSelector => {
-        return [...document.querySelectorAll(allResultsSelector)].map(anchor => {
-          const title = anchor.textContent.trim();
-          return `${title} - ${anchor.href}`;
-        });
-      }, defSelector);
+    const type = await grabContent(page, '.css-69s207');
+    type.map(e => e.split(" ")[0]);
+    const def = await grabContent(page, '.css-10n3ydx');
 
     const res = [];
 
@@ -59,6 +56,7 @@ let defgrabber = async(vocab, nounType) => {
       }
     })
     
+    console.log(`Definition for ${vocab} logged`);
 
     await browser.close();
 };
