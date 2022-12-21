@@ -11,7 +11,7 @@ allFileContents.split(/\r?\n/).forEach(line =>  {
   vocabs.push(data);
 });
 
-//clears all content from the file
+/**clears all content from the file*/
 function initFile() {
   fs.writeFile("./src/vocabs/defs.txt", "", (err) => {
     if (err) {
@@ -21,7 +21,7 @@ function initFile() {
   })
 }
 
-// Calls the defgrabber function for every vocab
+/**Calls the defgrabber function for every vocab*/
 const init = async() => {
   initFile()
   for(const data of vocabs) {
@@ -31,8 +31,8 @@ const init = async() => {
 
 /** 
  * Function which grabs all the definitions from the page
-   @param page the webpage it loads from
-   @param {string} selectorStr the string from which the elements will be selected
+ * @param page the webpage it loads from
+ * @param {string} selectorStr the string from which the elements will be selected
 */
 const grabContent = async(page, selectorStr) => {
   //initializes the selector
