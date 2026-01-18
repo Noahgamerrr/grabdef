@@ -16,8 +16,5 @@
   "bugs": {
     "url": "https://github.com/Noahgamerrr/grabdef/issues"
   },
-  "homepage": "https://github.com/Noahgamerrr/grabdef#readme",
-  "dependencies": {
-    "puppeteer": "^19.4.1"
-  }
+  "homepage": "https://github.com/Noahgamerrr/grabdef#readme"
 }

@@ -1,7 +1,37 @@
-adhere|verb
-appoint|verb
-concede|verb
-ginning|noun
-subsidies|noun
-traceable|adjective
-corrugated iron|noun
+estimates|noun
+differ|verb
+vibrant|adjective
+despite|adverb
+affluent|adjective
+spatial|adjective
+such as|adverb
+developing countries|noun
+sevenfold|adverb
+prosperous|adjective
+gentrification|noun
+commuters|noun
+destitute|noun
+separation|noun
+fragile|adjective
+entity|noun
+inevitable|adjective
+city-dwellers|noun
+require|verb
+sanitary facilities|noun
+precarious|adjective
+sewage treatment plants|noun
+developed countries|noun
+deteriorating|adjective
+lack|verb
+meet the demands|verb
+deprive of|verb
+makeshift|noun
+plywood|noun
+rural|adjective
+residents|noun
+urban cores|noun
+sprawl|noun
+economic segregation|noun
+social segregation|noun
+there is a cost to|phrase
+inextricably|adverb
